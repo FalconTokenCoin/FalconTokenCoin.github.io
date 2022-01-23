@@ -42,6 +42,7 @@ let chainInfo = {
         ]
     },
 }
+window.onload = () => {
 if (typeof window.ethereum !== 'undefined') {
     console.log('MetaMask is installed!');
     const bscTest = document.querySelector('#bscTest');
@@ -54,6 +55,7 @@ if (typeof window.ethereum !== 'undefined') {
     });
 } else {
     alert("请在钱包内打开，或者安装钱包浏览器插件metamask")
+}
 }
 async function registerEthereumChain(chain) {
     let chainData = {
