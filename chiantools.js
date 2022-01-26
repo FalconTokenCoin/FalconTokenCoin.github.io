@@ -1,4 +1,3 @@
-
 let chainInfo = {
     "bscChainTestNet": {
         "chainId": "0x61",
@@ -42,21 +41,7 @@ let chainInfo = {
         ]
     },
 }
-window.onload = () => {
-if (typeof window.ethereum !== 'undefined') {
-    console.log('MetaMask is installed!');
-    const bscTest = document.querySelector('#bscTest');
-    const bsc = document.querySelector('#bsc');
-    bscTest.addEventListener('click', () => {
-        registerEthereumChain("bscChainTestNet")
-    });
-    bsc.addEventListener('click', () => {
-        registerEthereumChain("bscChainMainNet")
-    });
-} else {
-    alert("请在钱包内打开，或者安装钱包浏览器插件metamask")
-}
-}
+
 async function registerEthereumChain(chain) {
     let chainData = {
         'jsonrpc': '2.0',
@@ -67,4 +52,29 @@ async function registerEthereumChain(chain) {
     };
     return window.ethereum.request(chainData)
     // window.ethereum.request($)
+}
+
+async function addTokenToWallet(token, symbol, decimals, logo){
+    await window.ethereum.request({
+        method: 'wallet_watchAsset',
+        params: {
+            type: 'ERC20', // Initially only supports ERC20, but eventually more!
+            options: {
+                address: token, // The address that the token is at.
+                symbol: symbol, // A ticker symbol or shorthand, up to 5 chars.
+                decimals: decimals, // The number of decimals in the token
+                image: logo, // A string url of the token logo
+            },
+        },
+    });
+}
+
+
+function getQueryString(name) {
+    let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    let r = window.location.search.substr(1).match(reg);
+    if (r != null) {
+        return decodeURIComponent(r[2]);
+    }
+    return null;
 }

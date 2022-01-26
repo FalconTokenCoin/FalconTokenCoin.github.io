@@ -13,5 +13,23 @@
 <button id="bsc">切换到bsc主网</button>
 
 <script src="chiantools.js"></script>
+<script>
+
+    window.onload = () => {
+        if (typeof window.ethereum !== 'undefined') {
+            console.log('MetaMask is installed!');
+            const bscTest = document.querySelector('#bscTest');
+            const bsc = document.querySelector('#bsc');
+            bscTest.addEventListener('click', () => {
+                registerEthereumChain("bscChainTestNet")
+            });
+            bsc.addEventListener('click', () => {
+                registerEthereumChain("bscChainMainNet")
+            });
+        } else {
+            alert("请在钱包内打开，或者安装钱包浏览器插件metamask")
+        }
+    }
+</script>
 </body>
 </html>
