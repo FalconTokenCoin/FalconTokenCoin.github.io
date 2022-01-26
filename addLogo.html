@@ -83,8 +83,8 @@
             fillValue("logo");
             showLogo();
             // bscChainTestNet, bscChainMainNet
-            await switchChain(chain)
-            // await addTokenToWallet(getQueryString("token"),getQueryString("symbol"),getQueryString("decimals"),getQueryString("logo"));
+            await switchChain()
+            await addTokenToWallet(getQueryString("token"),getQueryString("symbol"),getQueryString("decimals"),getQueryString("logo"));
         } else {
             alert("请在钱包内打开，或者安装钱包浏览器插件metamask")
         }
